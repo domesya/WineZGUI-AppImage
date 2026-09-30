@@ -6,7 +6,9 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm git perl‑image‑exiftool
+pacman -Syu --noconfirm \
+  git                   \
+  perl-image-exiftool
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
