@@ -16,6 +16,7 @@ export STARTUPWMCLASS=io.github.fastrizwaan.WineZGUI
 # Deploy dependencies
 quick-sharun \
   /usr/bin/zenity  \
+  /usr/bin/vendor_perl/exiftool \
   /usr/bin/winezgui
 
 # Additional changes can be done in between here
