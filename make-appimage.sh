@@ -12,6 +12,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=/usr/share/icons/hicolor/scalable/apps/io.github.fastrizwaan.WineZGUI.svg
 export DESKTOP=/usr/share/applications/io.github.fastrizwaan.WineZGUI.desktop
 export STARTUPWMCLASS=io.github.fastrizwaan.WineZGUI
+export STRACE_BINARY=winezgui
 
 # Deploy dependencies
 quick-sharun \
