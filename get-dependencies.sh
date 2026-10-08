@@ -19,6 +19,6 @@ get-debloated-pkgs --add-common --prefer-nano
   cd ./WineZGUI
   TAG=$(git tag --sort=-v:refname | grep -vi 'rc\|alpha\|beta' | head -1)
   git checkout "$TAG"
-	echo "${TAG#v}" > ~/version
+  echo "${TAG#v}" > ~/version
   sudo ./setup --install
 )
