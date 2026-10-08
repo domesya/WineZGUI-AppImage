@@ -1,0 +1,20 @@
+#/bin/sh
+ZENITY_PATH="${XDG_BIN_HOME:-$HOST_HOME/.local/bin}/zenity"
+
+_get_zenity() {
+	_link=$(download - "https://api.github.com/repos/pkgforge-dev/Zenity-GTK3-AppImage/releases/latest" \
+	| sed -e 's/[()",{} ]/\n/g' | grep -oi -m 1 "https://.*/.*-anylinux-$APPIMAGE_ARCH.AppImage$")
+
+	notify -ni "Downloading zenity..."
+	>&2 echo "Downloading zenity from: $_link"
+	mkdir -p "${ZENITY_PATH%/*}"
+	download "$ZENITY_PATH".tmp "$_link" || err_msg "Downloading zenity failed"
+	[ -s "$ZENITY_PATH".tmp ] || return 1
+	mv -f "$ZENITY_PATH".tmp "$ZENITY_PATH"
+	chmod +x "$ZENITY_PATH"
+	notify -ni "Finished downloading zenity."
+}
+
+if [ ! -x "$ZENITY_PATH" ]; then
+    _get_zenity 
+fi

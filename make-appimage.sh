@@ -20,6 +20,10 @@ quick-sharun \
 
 # Additional changes can be done in between here
 
+# Install latest winetricks
+wget --retry-connrefused --tries=30 https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks -O ./AppDir/bin/winetricks
+chmod +x ./AppDir/bin/winetricks
+
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
 
