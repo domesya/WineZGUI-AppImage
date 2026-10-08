@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 ZENITY_PATH="${XDG_BIN_HOME:-$HOST_HOME/.local/bin}/zenity"
 
 _get_zenity() {
