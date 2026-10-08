@@ -17,7 +17,8 @@ export STRACE_BINARY=winezgui
 # Deploy dependencies
 quick-sharun \
   /usr/bin/winezgui  \
-  /usr/share/winezgui
+  /usr/share/winezgui  \
+  /usr/bin/vendor_perl/exiftool
 
 # Additional changes can be done in between here
 
