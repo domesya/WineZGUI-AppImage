@@ -13,6 +13,9 @@ export ICON=/usr/share/icons/hicolor/scalable/apps/io.github.fastrizwaan.WineZGU
 export DESKTOP=/usr/share/applications/io.github.fastrizwaan.WineZGUI.desktop
 export STARTUPWMCLASS=io.github.fastrizwaan.WineZGUI
 export STRACE_BINARY=winezgui
+export PATH_MAPPING='
+  /usr/share/winezgui:${SHARUN_DIR}/share/winezgui
+'
 
 # Deploy dependencies
 quick-sharun \
