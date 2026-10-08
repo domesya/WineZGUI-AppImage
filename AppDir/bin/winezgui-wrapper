@@ -1,0 +1,41 @@
+#!/bin/sh
+set -eu
+HERE="$(dirname "$(readlink -f "$0")")"
+# Derive APPDIR robustly: prefer runtime env, fall back to wrapper location.
+# HERE is .../AppDir/bin, so its parent is AppDir.
+if [ -n "${APPDIR:-}" ]; then
+  :
+elif [ -n "${APPIMAGE_MOUNT:-}" ]; then
+  APPDIR="$APPIMAGE_MOUNT"
+else
+  APPDIR="$(dirname "$HERE")"
+fi
+export APPDIR
+
+# Keep a valid incoming DATADIR, otherwise search known layouts.
+if [ -z "${DATADIR:-}" ] || [ ! -f "${DATADIR}/winezgui-source" ]; then
+  for d in "$APPDIR/usr/share/winezgui" "$APPDIR/share/winezgui" \
+           "$HERE" "$HERE/../share/winezgui" "$HERE/../usr/share/winezgui"; do
+    if [ -f "$d/winezgui-source" ]; then
+      DATADIR="$d"
+      break
+    fi
+  done
+  export DATADIR
+fi
+
+echo "wrapper: APPDIR=$APPDIR DATADIR=${DATADIR:-unset}" >&2
+if [ -z "${DATADIR:-}" ] || [ ! -f "${DATADIR}/winezgui-source" ]; then
+  echo "DATADIR not found! Searched AppDir layouts." >&2
+  exit 1
+fi
+
+export INSTALL_TYPE="system"
+# DO NOT scrub PATH: host / protonup-qt wine, winetricks must leak through.
+for b in "$APPDIR/bin/winezgui" "$APPDIR/usr/bin/winezgui"; do
+  if [ -x "$b" ]; then
+    exec "$b" "$@"
+  fi
+done
+echo "winezgui binary not found under $APPDIR/bin or $APPDIR/usr/bin" >&2
+exit 1
