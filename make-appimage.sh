@@ -18,11 +18,7 @@ export MAIN_BIN=winezgui-wrapper
 # Deploy dependencies
 quick-sharun \
   /usr/bin/winezgui  \
-<<<<<<< HEAD
   /usr/share/winezgui \
-=======
-  /usr/share/winezgui  \
->>>>>>> 78a009e1aabf3dcd9239c4e665a46b3684994cc3
   /usr/bin/vendor_perl/exiftool
 
 # Additional changes can be done in between here
